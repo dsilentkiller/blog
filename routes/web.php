@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\Blog\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ require __DIR__.'/auth.php';
 
 Route::prefix('admin',[
     Route::resource('banner', BannerController::class),
+    Route::resource('blog', BlogController::class),
 
 ]);
 

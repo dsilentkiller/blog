@@ -7,6 +7,8 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
+        "kamaln7/toastr": "dev-master",
         "laravel/breeze": "^1.13",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.12",
