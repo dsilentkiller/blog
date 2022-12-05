@@ -40,6 +40,15 @@
                </div>
                <div class="nav-item dropdown">
                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                           class="fa fa-laptop me-2"></i>Member</a>
+                   <div class="dropdown-menu bg-transparent border-0">
+                       <a href="{{ route('member.create') }}" class="dropdown-item">Add Member</a>
+                       <a href="{{ route('member.index') }}" class="dropdown-item"> View Member</a>
+                       {{-- <a href="{{ route('banner.show') }}" class="dropdown-item">Show Banner</a> --}}
+                   </div>
+               </div>
+               <div class="nav-item dropdown">
+                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                            class="fa fa-laptop me-2"></i>About</a>
                    <div class="dropdown-menu bg-transparent border-0">
                        <a href="button.html" class="dropdown-item">Add About</a>
@@ -56,8 +65,17 @@
                        {{-- <a href="{{ route('banner.show') }}" class="dropdown-item">Show Banner</a> --}}
                    </div>
                </div>
+               <div class="nav-item dropdown">
+                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                           class="fa fa-laptop me-2"></i>Todo</a>
+                   <div class="dropdown-menu bg-transparent border-0">
+                       <a href="{{ route('todo.create') }}" class="dropdown-item">Add Todo</a>
+                       <a href="{{ route('todo.index') }}" class="dropdown-item"> View Todo List</a>
+                       {{-- <a href="{{ route('banner.show') }}" class="dropdown-item">Show Banner</a> --}}
+                   </div>
+               </div>
                <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Contact</a>
-               <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
+               {{-- <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
                <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
                <div class="nav-item dropdown">
                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
@@ -68,7 +86,7 @@
                        <a href="404.html" class="dropdown-item">404 Error</a>
                        <a href="blank.html" class="dropdown-item">Blank Page</a>
                    </div>
-               </div>
+               </div> --}}
            </div>
        </nav>
    </div>

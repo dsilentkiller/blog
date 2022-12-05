@@ -9,5 +9,5 @@ class Blog extends Model
 {
     use HasFactory;
     // protected $gurded;
-    protected $fillable=['_token','created_by', 'topic','story','image'];
+    protected $fillable=['_token','created_by', 'topic','story','image','date'];
 }

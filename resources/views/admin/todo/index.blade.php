@@ -12,8 +12,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="form-group row btn-warning">
-                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('blog.create') }}">
-                        <h6>View Blog Form</h6>
+                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('todo.create') }}">
+                        <h6>View todo Form</h6>
                     </a></div>
                 <div class='col-md-3 col-sm-3'><a href="/">
                         <h6>Go to Dashboard</h6>
@@ -31,48 +31,53 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Picture</th>
-                                        <th>Topic</th>
-                                        <th>Story</th>
+                                        {{-- <th>Picture</th> --}}
+                                        <th>date start</th>
+                                        <th>date finish</th>
+                                        <th>Todo list</th>
+                                        <th>Status</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($blogs) && count($blogs) > 0)
-                                        @foreach ($blogs as $blog)
+                                    @if (isset($todos) && count($todos) > 0)
+                                        @foreach ($todos as $todo)
                                             <tr>
                                                 <td>{{ $n++ }}</td>
-                                                <td>
-                                                    <a href="{{ asset('uploads/blogs/thumbnail/' . $blog->image) }}"><img
-                                                            src="{{ asset('uploads/blogs/thumbnail/' . $blog->image) }}"
+                                                {{-- <td>
+                                                    <a href="{{ asset('uploads/todos/thumbnail/' . $todo->image) }}"><img
+                                                            src="{{ asset('uploads/todos/thumbnail/' . $todo->image) }}"
                                                             height="80" width="150"></a>
-                                                </td>
-                                                <td>{{ $blog->topic }}</td>
+                                                </td> --}}
+                                                <td>{{ $todo->date }}</td>
+                                                <td>{{ $todo->finish_date }}</td>
 
-                                                <td>{{ $blog->story }}</td>
-                                                <td><a href="{{ route('blog.show', $blog) }}">Show</a></td>
-                                                <td><a href="{{ route('blog.edit', $blog) }}">Edit</a></td>
+
+                                                <td>{{ $todo->todolist }}</td>
+                                                <td>{{ $todo->status }}</td>
+                                                <td><a href="{{ route('todo.show', $todo) }}">Show</a></td>
+                                                <td><a href="{{ route('todo.edit', $todo) }}">Edit</a></td>
                                                 <td>
-                                                    {{-- <form action="{{ route('blog.destroy', $blog) }}" method="post">
+                                                    {{-- <form action="{{ route('todo.destroy', $todo) }}" method="post">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
                                                         {{-- <button type="submit" class="btn-danger" >Deleted</button> --}}
                                                     {{-- <button type="submit" data-target="#exampleModal"
-                                                            data-id={{ $blog->id }} class="btn btn-danger delete"
+                                                            data-id={{ $todo->id }} class="btn btn-danger delete"
                                                             data-toggle="modal" data-target="#deleteModal">
                                                             Delete
                                                         </button>
                                                     </form> --}}
 
                                                     {{-- <a data-toggle="modal" id="deleteModal" data-target="#deleteModal"
-                                                        data-attr="{{ route('blog.destroy', $blog->id) }}"
-                                                        title="Delete blog">
+                                                        data-attr="{{ route('todo.destroy', $todo->id) }}"
+                                                        title="Delete todo">
                                                         <i class="fas fa-trash text-danger  fa-lg"></i>
                                                     </a> --}}
 
 
                                                 <td>
-                                                    <a href="{{ route('blog.destroy', $blog) }}" data-id={{ $blog->id }}
+                                                    <a href="{{ route('todo.destroy', $todo) }}" data-id={{ $todo->id }}
                                                         class="btn btn-danger delete" data-toggle="modal"
                                                         data-target="#deleteModal">Delete</a>
                                                 </td>
@@ -89,7 +94,7 @@
                                 </tbody>
                             </table>
 
-                            {{ $blogs->links() }}
+                            {{ $todos->links() }}
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -107,22 +112,22 @@
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Blog</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete todo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('blog.destroy') }}" method="post">
+                    <form action="{{ route('todo.destroy') }}" method="post">
                         @csrf
                         @method('DELETE')
                         <input id="id" name="id" hidden>
-                        <h5 class="text-center">Are you sure you want to delete this blog?</h5>
+                        <h5 class="text-center">Are you sure you want to delete this todo?</h5>
                         {{-- <input id="firstName" name="firstName"><input id="lastName" name="lastName"> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete Blog</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete todo</button>
                 </div>
                 </form>
             </div>

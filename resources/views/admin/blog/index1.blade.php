@@ -56,26 +56,35 @@
                                                     {{-- <form action="{{ route('blog.destroy', $blog) }}" method="post">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
-                                                        {{-- <button type="submit" class="btn-danger" >Deleted</button> --}}
-                                                    {{-- <button type="submit" data-target="#exampleModal"
-                                                            data-id={{ $blog->id }} class="btn btn-danger delete"
-                                                            data-toggle="modal" data-target="#deleteModal">
+                                                        {{-- <button type="submit" class="btn-danger">Deleted</button> --}}
+                                                    {{-- <button type="submit" class="btn btn-danger" data-toggle="modal"
+                                                            data-target="#exampleModal">
                                                             Delete
                                                         </button>
                                                     </form> --}}
 
-                                                    {{-- <a data-toggle="modal" id="deleteModal" data-target="#deleteModal"
+                                                    <a data-toggle="modal" id="deleteModal" data-target="#deleteModal"
                                                         data-attr="{{ route('blog.destroy', $blog->id) }}"
                                                         title="Delete blog">
                                                         <i class="fas fa-trash text-danger  fa-lg"></i>
-                                                    </a> --}}
+                                                    </a>
 
 
-                                                <td>
-                                                    <a href="{{ route('blog.destroy', $blog) }}" data-id={{ $blog->id }}
-                                                        class="btn btn-danger delete" data-toggle="modal"
-                                                        data-target="#deleteModal">Delete</a>
-                                                </td>
+                                                    {{-- <button class="delete-modal btn btn-danger"
+                                                        data-id="{{ $blog->id }}" data-name="{{ $blog->name }}">
+                                                        <span class="glyphicon glyphicon-trash"></span> Delete
+                                                    </button> --}}
+                                                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#exampleModal">
+                                                        Delete
+                                                    </button> --}}
+                                                    {{-- <a type="button" class="btn btn-danger"
+                                                        href="{{ route('blog.destroy') }}" data-toggle="modal"
+                                                        data-target="#deleteBlog" id="#deleteBlog">Delete</a> --}}
+                                                    {{-- <a data-toggle="modal" href="#deactiveModal"
+                                                        href="{{ route('blog.destroy') }}" id="deleteModal"
+                                                        onclick="opendeactivemodal()"><i class="fa fa-ban"
+                                                            aria-hidden="true"></i></a> --}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -101,40 +110,61 @@
         </div>
         <!-- /.container-fluid -->
     </section>
-    <!-- Delete Warning Modal -->
-    <div class="modal modal-danger fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete"
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="dialog">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Blog</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Delete</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('blog.destroy') }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input id="id" name="id" hidden>
-                        <h5 class="text-center">Are you sure you want to delete this blog?</h5>
-                        {{-- <input id="firstName" name="firstName"><input id="lastName" name="lastName"> --}}
+                    <h5>R u Sure Want to delete this?</h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete Blog</button>
+                    <button type="button" class="btn btn-primary">Delete</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-    <!-- End Delete Modal -->
+
     <script>
-        $(document).on('click', '.delete', function() {
-            let id = $(this).attr('data-id');
-            $('#id').val(id);
+        // display a modal (delete modal)
+        $(document).on('click', '#deleteModal', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#deleteModal').modal("show");
+                    $('#deleteBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 8000
+            })
         });
     </script>
 
 
 @endsection
+
+<!-- Button trigger modal -->
+{{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Delete
+</button> --}}

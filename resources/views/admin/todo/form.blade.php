@@ -10,12 +10,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script> --}}
     <section class="content">
         <div class="container-fluid">
             <div class="form-group row btn-warning">
-                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('blog.index') }}">
-                        <h6>View Blog List</h6>
+                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('todo.index') }}">
+                        <h6>View todo List</h6>
                     </a></div>
                 <div class='col-md-3 col-sm-3'><a href="/">
                         <h6>Go to Dashboard</h6>
@@ -23,11 +26,11 @@
 
 
             </div>
-            @if (isset($blog))
-                <form action="{{ route('blog.update', $blog) }}" method="post" enctype="multipart/form-data" class=>
+            @if (isset($todo))
+                <form action="{{ route('todo.update', $todo) }}" method="post" enctype="multipart/form-data" class=>
                     {{ method_field('PATCH') }}
                 @else
-                    <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('todo.store') }}" method="post" enctype="multipart/form-data">
             @endif
             <div class="row">
                 <div class="col-md-12">
@@ -35,7 +38,7 @@
                         <div class="card card-info">
                             @csrf
                             <div class="card-header">
-                                <div class="card-title bg-danger">Blog @if (isset($blog))
+                                <div class="card-title bg-danger">todo @if (isset($todo))
                                         Update
                                     @else
                                         Addon
@@ -45,45 +48,61 @@
                                 <div class="form-group float-right">
                                     <label>Status:</label>
                                     <input type="checkbox" name="status" value="1" data-bootstrap-switch
-                                        @if (isset($blog)) @if ($blog->status) checked @endif
+                                        @if (isset($todo)) @if ($todo->status) checked @endif
                                     @else checked @endif>
                                 </div>
                                 <div class="form-group">
-                                    <label for="title">Topic<span style="color:red; font-size: 20px; "> * </span></label>
-                                    <input type="text" name="topic" class="form-control" placeholder="Topic"
-                                        value="{{ old('topic', @$blog->topic) }}">
-                                    @error('topic')
+                                    <label for="title">Todo<span style="color:red; font-size: 20px; "> * </span></label>
+                                    <input type="text" name="todo" class="form-control" placeholder="todo"
+                                        value="{{ old('todo', @$todo->todo) }}">
+                                    @error('todo')
                                         <span class="alert alert-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    <label>Choose Profile:</label><br>
-                                    <label for="image">
-                                        <input type="file" name="image" placeholder="Choose An image">
-                                    </label>
-                                    @error('image')
-                                        <span>{{ $message }}</span>
-                                    @enderror
-                                </div>
 
-                                <div class="form-group "> <label for="date"> Date : <span
+
+                                <div class="form-group "> <label for="date"> Start Date : <span
                                             style="color:red; font-size: 20px; "> * </span> </label>
                                     <div class="form-line ">
-                                        <input type="text" name="date" id="date" class="datepicker form-control"
-                                            placeholder="YYYY-MM-DD" value="{{ old('date', @$blog->date) }}" id="date"
+                                        <input type="date" name="date" id="date" class="datepicker form-control"
+                                            placeholder="YYYY-MM-DD" value="{{ old('date', @$todo->date) }}" id="date"
                                             onchange="checkdate();"
                                             @error('date')>
                                                         <span class="alert alert-danger">{{ $message }}</span>
                                                     @enderror
                                             </div>
                                     </div>
+                                    <div class="form-group "> <label for="finish_date"> Finish Date : <span
+                                                style="color:red; font-size: 20px; "> * </span> </label>
+                                        <div class="form-line ">
+                                            <input type="date" name="finish_date" id="finish_date"
+                                                class="datepicker form-control" placeholder="YYYY-MM-DD"
+                                                value="{{ old('finish_date', @$todo->date) }}" id="finish_date"
+                                                onchange="checkdate();"
+                                                @error('finish_date')>
+                                                    <span class="alert alert-danger">{{ $message }}</span>
+                                                @enderror
+                                                </div>
+                                        </div>
 
 
+
+
+                                        <div class="form-group">
+                                            <label for="title">Todolist <span style="color:red; font-size: 20px; "> *
+                                                </span></label>
+                                            <textarea class="form-control ckeditor" name="todolist" value={{ old('todolist', @$todo->todolist) }}></textarea>
+                                            @error('todolist')
+                                                <span class="alert alert-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="form-group">
-                                        <label for="title">Story<span style="color:red; font-size: 20px; "> *
+                                        <label for="title">Status <span style="color:red; font-size: 20px; "> *
                                             </span></label>
-                                        <textarea class="form-control ckeditor" name="story" value={{ old('story', @$blog->story) }}></textarea>
-                                        @error('story')
+                                        <input type="text" class="form-control ckeditor" name="status"
+                                            value={{ old('status', @$todo->status) }}>
+                                        @error('status')
                                             <span class="alert alert-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -91,7 +110,7 @@
                                 <div class="card-footer">
                                     <div>
                                         <button type="submit" class="btn btn-success float-right">
-                                            @if (isset($blog))
+                                            @if (isset($todo))
                                                 Update
                                             @else
                                                 Save
