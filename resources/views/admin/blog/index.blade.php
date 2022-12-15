@@ -13,7 +13,7 @@
         <div class="container-fluid">
             <div class="form-group row btn-warning">
                 <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('blog.create') }}">
-                        <h6>View Blog Form</h6>
+                        <h6>Add New Blog </h6>
                     </a></div>
                 <div class='col-md-3 col-sm-3'><a href="/">
                         <h6>Go to Dashboard</h6>

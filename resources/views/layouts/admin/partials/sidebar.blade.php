@@ -38,6 +38,30 @@
                        {{-- <a href="{{ route('banner.show') }}" class="dropdown-item">Show Banner</a> --}}
                    </div>
                </div>
+               {{-- test --}}
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                   <ul class="navbar-nav mr-auto">
+                       {{-- <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li> --}}
+
+                       <li class="nav-item dropdown">
+                           <a class="nav-link dropdown-toggle btn-outline-success me-4" href="#"
+                               id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="true">
+                               BLOG
+                           </a>
+                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               <a class="dropdown-item" href="{{ route('blog.index') }}">BLOG List</a>
+                               {{-- <a class="dropdown-item" href="#">House</a> --}}
+                               {{-- <div class="dropdown-divider"></div> --}}
+                               <a class="dropdown-item" href="{{ route('blog.create') }}">ADD About </a>
+                           </div>
+                       </li>
+                       <ul>
+               </div>
+
+               {{-- test end --}}
                <div class="nav-item dropdown">
                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                            class="fa fa-laptop me-2"></i>Member</a>
@@ -75,18 +99,7 @@
                    </div>
                </div>
                <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Contact</a>
-               {{-- <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-               <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-               <div class="nav-item dropdown">
-                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                           class="far fa-file-alt me-2"></i>Banner</a>
-                   <div class="dropdown-menu bg-transparent border-0">
-                       <a href="signin.html" class="dropdown-item">Sign In</a>
-                       <a href="signup.html" class="dropdown-item">Sign Up</a>
-                       <a href="404.html" class="dropdown-item">404 Error</a>
-                       <a href="blank.html" class="dropdown-item">Blank Page</a>
-                   </div>
-               </div> --}}
+
            </div>
        </nav>
    </div>

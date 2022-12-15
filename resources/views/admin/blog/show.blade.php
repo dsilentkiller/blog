@@ -26,7 +26,7 @@
                                 </div>
                                 <hr>
                                 <div class="form-group mt-2">
-                                    <label>Created Or Updated By: {{ $blog->user->name }} </label>
+                                    {{-- <label>Created Or Updated By: {{ $blog->user->name }} </label> --}}
                                 </div>
                                 {{-- summary --}}
                                 <div class="form-group">
