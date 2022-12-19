@@ -38,7 +38,7 @@
                         <div class="card card-info">
                             @csrf
                             <div class="card-header">
-                                <div class="card-title bg-danger">todo @if (isset($todo))
+                                <div class="card-title bg-danger">Todo @if (isset($todo))
                                         Update
                                     @else
                                         Addon

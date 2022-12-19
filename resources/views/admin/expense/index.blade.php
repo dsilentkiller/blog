@@ -12,8 +12,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="form-group row btn-warning">
-                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('todo.create') }}">
-                        <h6>View Todo Form</h6>
+                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('expense.create') }}">
+                        <h6>Add New expense </h6>
                     </a></div>
                 <div class='col-md-3 col-sm-3'><a href="/">
                         <h6>Go to Dashboard</h6>
@@ -32,61 +32,73 @@
                                     <tr>
                                         <th>#</th>
                                         {{-- <th>Picture</th> --}}
-                                        <th>date start</th>
-                                        <th>date finish</th>
-                                        <th>Todo list</th>
-                                        <th>Status</th>
+                                        <th>Date</th>
+
+                                        <th>Total Amount </th>
+                                        <th> Name</th>
+                                        <th>Purpose</th>
+
+                                        <th>Remark</th>
+                                        <th>Image</th>
+                                        <th>Payment Method</th>
+                                        <th>Created_by</th>
+                                        <th>Amount Taken From</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($todos) && count($todos) > 0)
-                                        @foreach ($todos as $todo)
+                                    @if (isset($expenses) && count($expenses) > 0)
+                                        @foreach ($expenses as $expense)
                                             <tr>
                                                 <td>{{ $n++ }}</td>
                                                 {{-- <td>
-                                                    <a href="{{ asset('uploads/todos/thumbnail/' . $todo->image) }}"><img
-                                                            src="{{ asset('uploads/todos/thumbnail/' . $todo->image) }}"
+                                                    <a href="{{ asset('uploads/expenses/thumbnail/' . $expense->image) }}"><img
+                                                            src="{{ asset('uploads/expenses/thumbnail/' . $expense->image) }}"
                                                             height="80" width="150"></a>
                                                 </td> --}}
-                                                <td>{{ $todo->date }}</td>
-                                                <td>{{ $todo->finish_date }}</td>
+                                                <td>{{ $expense->date }}</td>
+                                                <td>{{ $expense->amount }}</td>
+                                                <td>{{ $expense->client_name }}</td>
+                                                <td>{{ $expense->purpose }}</td>
+                                                <td>{{ $expense->remark }}</td>
+                                                <td>{{ $expense->image }}</td>
+                                                <td>{{ $expense->payment_method }}</td>
+                                                <td>{{ $expense->created_by }}</td>
+                                                <td>{{ $expense->amount_taken_from }}</td>
 
-
-                                                <td>{{ $todo->todolist }}</td>
-                                                <td>{{ $todo->status }}</td>
-                                                <td><a href="{{ route('todo.show', $todo) }}">Show</a></td>
-                                                <td><a href="{{ route('todo.edit', $todo) }}">Edit</a></td>
+                                                <td>{{ $expense->status }}</td>
+                                                {{-- <td><a href="{{ route('expense.show', $expense) }}">Show</a></td> --}}
+                                                <td><a href="{{ route('expense.edit', $expense) }}">Edit</a></td>
                                                 <td>
-                                                    {{-- <form action="{{ route('todo.destroy', $todo) }}" method="post">
+                                                    {{-- <form action="{{ route('expense.destroy', $expense) }}" method="post">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
                                                         {{-- <button type="submit" class="btn-danger" >Deleted</button> --}}
                                                     {{-- <button type="submit" data-target="#exampleModal"
-                                                            data-id={{ $todo->id }} class="btn btn-danger delete"
+                                                            data-id={{ $expense->id }} class="btn btn-danger delete"
                                                             data-toggle="modal" data-target="#deleteModal">
                                                             Delete
                                                         </button>
                                                     </form> --}}
 
                                                     {{-- <a data-toggle="modal" id="deleteModal" data-target="#deleteModal"
-                                                        data-attr="{{ route('todo.destroy', $todo->id) }}"
-                                                        title="Delete todo">
+                                                        data-attr="{{ route('expense.destroy', $expense->id) }}"
+                                                        title="Delete expense">
                                                         <i class="fas fa-trash text-danger  fa-lg"></i>
                                                     </a> --}}
 
 
                                                 <td>
-                                                    <a href="{{ route('todo.destroy', $todo) }}" data-id={{ $todo->id }}
-                                                        class="btn btn-danger delete" data-toggle="modal"
-                                                        data-target="#deleteModal">Delete</a>
+                                                    <a href="{{ route('expense.destroy', $expense) }}"
+                                                        data-id={{ $expense->id }} class="btn btn-danger delete"
+                                                        data-toggle="modal" data-target="#deleteModal">Delete</a>
                                                 </td>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5">
+                                            <td colspan="2">
                                                 <center>No Record Found</center>
                                             </td>
                                         </tr>
@@ -94,7 +106,7 @@
                                 </tbody>
                             </table>
 
-                            {{ $todos->links() }}
+                            {{ $expenses->links() }}
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -112,22 +124,22 @@
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete todo</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete expense</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('todo.destroy') }}" method="post">
+                    <form action="{{ route('expense.destroy') }}" method="post">
                         @csrf
                         @method('DELETE')
                         <input id="id" name="id" hidden>
-                        <h5 class="text-center">Are you sure you want to delete this todo?</h5>
+                        <h5 class="text-center">Are you sure you want to delete this expense?</h5>
                         {{-- <input id="firstName" name="firstName"><input id="lastName" name="lastName"> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete todo</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete expense</button>
                 </div>
                 </form>
             </div>

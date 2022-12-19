@@ -13,18 +13,24 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('image');
             $table->dateTime('date');
             $table->dateTime('finish_date')->nullable();
-            $table->string('topic')->nullable();
-            $table->string('status')->nullable();
-            $table->text('story')->nullable();
-            $table->string('_token');
-            $table->string('created_by')->nullable();
 
+
+            $table->string('status');
+            $table->string('person_name');
+            $table->string('person_phone');
+            $table->string('person_address');
+            $table->string('total_amount');
+            $table->string('paid_amount');
+            $table->string('due_amount');
+            $table->string('paid_by');
+            $table->string('payment_method');
+
+            $table->string('created_by');
         });
     }
 
@@ -35,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('loans');
     }
 };

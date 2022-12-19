@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <label for="title">Story<span style="color:red; font-size: 20px; "> *
                                             </span></label>
-                                        <textarea class="form-control ckeditor" name="story" value={{ old('story', @$blog->story) }}></textarea>
+                                        <textarea class="form-control " name="story" value={{ old('story', @$blog->story) }}></textarea>
                                         @error('story')
                                             <span class="alert alert-danger">{{ $message }}</span>
                                         @enderror
@@ -106,12 +106,12 @@
                 </form>
             </div>
     </section>
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    {{-- <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.ckeditor').ckeditor();
         });
-    </script>
+    </script> --}}
 
 
     @push('js')

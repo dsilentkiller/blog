@@ -12,8 +12,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="form-group row btn-warning">
-                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('todo.create') }}">
-                        <h6>View Todo Form</h6>
+                <div class="col-md-3 col-sm-3 float-right"><a href="{{ route('loan.create') }}">
+                        <h6>Add New Loan </h6>
                     </a></div>
                 <div class='col-md-3 col-sm-3'><a href="/">
                         <h6>Go to Dashboard</h6>
@@ -32,61 +32,69 @@
                                     <tr>
                                         <th>#</th>
                                         {{-- <th>Picture</th> --}}
-                                        <th>date start</th>
-                                        <th>date finish</th>
-                                        <th>Todo list</th>
-                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Person Name</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Total Amount </th>
+                                        <th>Paid Amt</th>
+                                        <th>Due Amt</th>
+                                        <th>Payment Method</th>
                                         <th colspan="3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (isset($todos) && count($todos) > 0)
-                                        @foreach ($todos as $todo)
+                                    @if (isset($loans) && count($loans) > 0)
+                                        @foreach ($loans as $loan)
                                             <tr>
                                                 <td>{{ $n++ }}</td>
                                                 {{-- <td>
-                                                    <a href="{{ asset('uploads/todos/thumbnail/' . $todo->image) }}"><img
-                                                            src="{{ asset('uploads/todos/thumbnail/' . $todo->image) }}"
+                                                    <a href="{{ asset('uploads/loans/thumbnail/' . $loan->image) }}"><img
+                                                            src="{{ asset('uploads/loans/thumbnail/' . $loan->image) }}"
                                                             height="80" width="150"></a>
                                                 </td> --}}
-                                                <td>{{ $todo->date }}</td>
-                                                <td>{{ $todo->finish_date }}</td>
+                                                <td>{{ $loan->date }}</td>
+                                                <td>{{ $loan->person_name }}</td>
+                                                <td>{{ $loan->person_phone }}</td>
+                                                <td>{{ $loan->person_address }}</td>
+                                                <td>{{ $loan->total_amount }}</td>
+                                                <td>{{ $loan->paid_amount }}</td>
+                                                <td>{{ $loan->due_amount }}</td>
+                                                <td>{{ $loan->paid_by }}</td>
 
-
-                                                <td>{{ $todo->todolist }}</td>
-                                                <td>{{ $todo->status }}</td>
-                                                <td><a href="{{ route('todo.show', $todo) }}">Show</a></td>
-                                                <td><a href="{{ route('todo.edit', $todo) }}">Edit</a></td>
+                                                <td>{{ $loan->status }}</td>
+                                                {{-- <td><a href="{{ route('loan.show', $loan) }}">Show</a></td> --}}
+                                                <td><a href="{{ route('loan.edit', $loan) }}">Edit</a></td>
                                                 <td>
-                                                    {{-- <form action="{{ route('todo.destroy', $todo) }}" method="post">
+                                                    {{-- <form action="{{ route('loan.destroy', $loan) }}" method="post">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
                                                         {{-- <button type="submit" class="btn-danger" >Deleted</button> --}}
                                                     {{-- <button type="submit" data-target="#exampleModal"
-                                                            data-id={{ $todo->id }} class="btn btn-danger delete"
+                                                            data-id={{ $loan->id }} class="btn btn-danger delete"
                                                             data-toggle="modal" data-target="#deleteModal">
                                                             Delete
                                                         </button>
                                                     </form> --}}
 
                                                     {{-- <a data-toggle="modal" id="deleteModal" data-target="#deleteModal"
-                                                        data-attr="{{ route('todo.destroy', $todo->id) }}"
-                                                        title="Delete todo">
+                                                        data-attr="{{ route('loan.destroy', $loan->id) }}"
+                                                        title="Delete loan">
                                                         <i class="fas fa-trash text-danger  fa-lg"></i>
                                                     </a> --}}
 
 
                                                 <td>
-                                                    <a href="{{ route('todo.destroy', $todo) }}" data-id={{ $todo->id }}
-                                                        class="btn btn-danger delete" data-toggle="modal"
-                                                        data-target="#deleteModal">Delete</a>
+                                                    <a href="{{ route('loan.destroy', $loan) }}"
+                                                        data-id={{ $loan->id }} class="btn btn-danger delete"
+                                                        data-toggle="modal" data-target="#deleteModal">Delete</a>
                                                 </td>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5">
+                                            <td colspan="2">
                                                 <center>No Record Found</center>
                                             </td>
                                         </tr>
@@ -94,7 +102,7 @@
                                 </tbody>
                             </table>
 
-                            {{ $todos->links() }}
+                            {{ $loans->links() }}
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -112,22 +120,22 @@
         <div class="modal-dialog" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete todo</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Delete loan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('todo.destroy') }}" method="post">
+                    <form action="{{ route('loan.destroy') }}" method="post">
                         @csrf
                         @method('DELETE')
                         <input id="id" name="id" hidden>
-                        <h5 class="text-center">Are you sure you want to delete this todo?</h5>
+                        <h5 class="text-center">Are you sure you want to delete this loan?</h5>
                         {{-- <input id="firstName" name="firstName"><input id="lastName" name="lastName"> --}}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete todo</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Yes, Delete loan</button>
                 </div>
                 </form>
             </div>
