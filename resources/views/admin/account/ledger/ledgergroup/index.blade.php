@@ -1,4 +1,4 @@
-@extends('layouts.admin-app')
+@extends('layouts.accounts.account-app')
 @section('content')
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -22,16 +22,16 @@
 
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
+                {{-- <div class="col-12">
+                    {{-- <div class="card">
                         {{-- <div class="card-header" style="padding: 0px;">
                             <div class="card-title btn-info">New banner </div>
                             <div> --}}
-                        <a class="btn btn-info float-right" data-toggle="collapse" href="#collapseExample" role="button"
+                {{-- <a class="btn btn-info float-right" data-toggle="collapse" href="#collapseExample" role="button"
                             aria-expanded="false" aria-controls="collapseExample">+New Ledger
                             Group</a>
-                    </div>
-                </div>
+                    </div> --}}
+                {{-- </div> --}}
 
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -59,8 +59,8 @@
                                         <td>{{ $ledgergroup->ledgergroup_code }}</td>
 
 
-                                        <td><a href="{{ route('ledgergroup.show', $ledgergroup) }}">Show</a></td>
-                                        <td><a href="{{ route('ledgergroup.edit', $ledgergroup) }}">Edit</a></td>
+                                        {{-- <td><a href="{{ route('ledgergroup.show', $ledgergroup) }}">Show</a></td> --}}
+                                        <td><a href="{{ route('ledger-group.edit', $ledgergroup) }}">Edit</a></td>
                                         <td>
                                             {{-- <form action="{{ route('ledgergroup.destroy', $ledgergroup) }}" method="post">
                                                         @csrf

@@ -49,24 +49,32 @@
                                 @enderror
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-md-12 control-label" for="ledger_groups" style ="font-size:16px;font-style: normal;border-top: auto; padding-right: 30px;">Select Ledger Group Name<span style="color:red; font-size:12px; "> * </span></label>
-                                                <div class="col-md-8">
-                                                    <div class="form-line">
-                                                        <select name="ledger_groups_id"   class="form-control selectpicker" id="ledger_group_id"  required>
-                                                            <option value="">Select Ledger Group</option>
+                                        <label class="col-md-6 control-label" for="ledger_groups"
+                                            style="font-size:16px;font-style: normal;border-top: auto; padding-right: 30px;">Select
+                                            Ledger Group Name<span style="color:red; font-size:12px; "> * </span></label>
+                                        <div class="col-md-8">
+                                            <div class="form-line border:1px">
+                                                <select name="ledger_groups_id" class="form-control selectpicker"
+                                                    onchange="changeStatus()" id="ledger_groups_id" required>
+                                                    <option value="" id="ledger_groups_id">Select Ledger Group
+                                                    </option>
+                                                    {{-- <option value="" id="btn">Select Ledger Group</option> --}}
 
-                                                          foreach ($ledgergroups as $ledgergroup): ?>
-                                                                <option style="color: black;" value="{{ old('ledgergroup_id', @$ledgergroup->ledgergroup_id) }}">{{  @$ledgergroup->ledgergroup_name  }} </option>
+                                                    {{-- @foreach ($ledgergroups as $ledgergroup) --}}
+                                                    <option style="color: black;"
+                                                        value="{{ old('ledgergroup_id', @$ledgergroup->ledgergroup_id) }}">
+                                                        {{ @$ledgergroup->ledgergroup_name }} </option>
+                                                    {{-- @endforeach --}}
 
-                                                        </select>
-                                                        <?php// echo form_error('product_name')?>
-                                                    </div>
-                                                </div>
+                                                </select>
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            {{-- <div class="form">
+                                {{-- <div class="form">
                                 <label>Choose Profile:</label><br>
                                 <label for="image">
                                     <input type="file" name="image" placeholder="Choose An image">
@@ -76,7 +84,7 @@
                                 @enderror
                             </div> --}}
 
-                            {{-- <div class="form "> <label for="date"> Date : <span
+                                {{-- <div class="form "> <label for="date"> Date : <span
                                         style="color:red; font-size: 20px; "> * </span> </label>
                                 <div class="form-line ">
                                     <input type="text" name="date" id="date" class="datepicker form-control"
@@ -89,37 +97,59 @@
                                 </div> --}}
 
 
-                            <div class="form">
-                                <label for="title">Ledger Group Code<span style="color:red; font-size: 20px; "> *
-                                    </span></label>
-                                <input type="number" class="form-control" name="ledger_code"
-                                    value={{ old('ledger_code', @$ledger->ledger_code) }}>
-                                @error('ledger_code')
-                                    <span class="alert alert-danger">{{ $message }}</span>
-                                @enderror
+                                <div class="form">
+                                    <label for="title">Ledger Group Code<span style="color:red; font-size: 20px; "> *
+                                        </span></label>
+                                    <input type="number" class="form-control" name="ledger_code"
+                                        value={{ old('ledgergroup_code', @$ledger->ledger_code) }}>
+                                    @error('ledger_code')
+                                        <span class="alert alert-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <div>
-                                <button type="submit" class="btn btn-success float-right">
-                                    @if (isset($ledger))
-                                        Update
-                                    @else
-                                        Save
-                                    @endif
-                                </button>
+                            <div class="card-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-success float-right">
+                                        @if (isset($ledger))
+                                            Update
+                                        @else
+                                            Save
+                                        @endif
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </form>
+            </form>
         </div>
     </section>
+    <script>
+        function changeStatus() {
+            var status = document.getElementById('ledger_groups_id');
+            if (status.value == "ledgergroup_name") {
+                document.getElementById("ledgergroup_code").style.visibility = "hidden";
+            } else {
+                document.getElementById("ledgergroup_code").style.visibility = "visible";
 
+            }
+        }
+        // const btn = document.getElementById('btn');
 
+        // btn.addEventListener('click', () => {
+        //     const form = document.getElementById('form');
 
+        // if (form.style.display === 'none') {
+        // {{-- //  this SHOWS the form --}}
+        // form.style.display = 'block';
+        // } else {
+        //     {{-- //  this HIDES the form --}}
+        //     form.style.display = 'none';
+        //     }
+        // });
+        {{-- end --}}
+    </script>
 
     @push('js')
         <script src="{{ asset('dashboard/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>

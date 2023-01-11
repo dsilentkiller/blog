@@ -10,8 +10,8 @@ class LedgerGroup extends Model
     use HasFactory;
     protected $fillable =[
 
-        'ledger_group',
-        'ledger_code',
+        'ledgergroup_name',
+        'ledgergroup_code',
         'status',
 
 

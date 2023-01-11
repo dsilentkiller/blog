@@ -104,7 +104,7 @@ class ExpenseController extends Controller
         //
         return view($this->folderName.'form',[
             'activePage' =>'site_setting',
-            'expenses' => $this-> getexpenses(10),
+            'expenses' => $this-> getExpenses(10),
             'n' =>1,
             'expense' =>$expense,
 

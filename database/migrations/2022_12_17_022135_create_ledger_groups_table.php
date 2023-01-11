@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('ledger_groups', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('ledger_code');
-            $table->string('ledger_group');
+            $table->string('ledgergroup_code');
+            $table->string('ledgergroup_name');
+            $table->string('created_by');
             $table->boolean('status');
 
         });

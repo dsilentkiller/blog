@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\ManageUser;
 
-use App\Models\Admin\Account\Ledger\Ledger;
-use App\Http\Requests\StoreLedgerRequest;
-use App\Http\Requests\UpdateLedgerRequest;
+use App\Http\Controllers\Controller;
+use App\Models\c;
+use Illuminate\Http\Request;
 
-class LedgerController extends Controller
+class ManageUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class LedgerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLedgerRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLedgerRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class LedgerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin\Account\Ledger\Ledger  $ledger
+     * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function show(Ledger $ledger)
+    public function show(c $c)
     {
         //
     }
@@ -53,10 +53,10 @@ class LedgerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin\Account\Ledger\Ledger  $ledger
+     * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ledger $ledger)
+    public function edit(c $c)
     {
         //
     }
@@ -64,11 +64,11 @@ class LedgerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLedgerRequest  $request
-     * @param  \App\Models\Admin\Account\Ledger\Ledger  $ledger
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLedgerRequest $request, Ledger $ledger)
+    public function update(Request $request, c $c)
     {
         //
     }
@@ -76,10 +76,10 @@ class LedgerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin\Account\Ledger\Ledger  $ledger
+     * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ledger $ledger)
+    public function destroy(c $c)
     {
         //
     }

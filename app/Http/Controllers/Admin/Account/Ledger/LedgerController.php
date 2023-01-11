@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Account\Ledger;
 
 use App\Models\c;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Kamaln7\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use App\Models\Admin\Account\Ledger\Ledger;
 
 class LedgerController extends Controller
 {
-    protected $folderName ='admin.ledger.';
+    protected $folderName ='admin.account.ledger.';
     // protected $imageSupport;
     protected $imageHeight =459;
     protected $imageWidth =500;
@@ -64,6 +65,11 @@ class LedgerController extends Controller
     public function store(Request $request)
     {
         //
+        // $ledgergroup = DB::Table('ledger_groups')->select('ledgergroup_id','ledgergroup_name')->where('id',1)->get();
+
+        $ledgergroup = DB::table('ledgers')->join('ledger_groups', 'ledger_groups.ledgergroups_id','=','ledgers.id')->select('ledgergroup_name')->get();
+        echo "hello";
+        dd($ledgergroup);
         $this->Ledger ->fill($request->all());
 
         $this->Ledger ->created_by = Auth::user()->id;
@@ -128,7 +134,7 @@ class LedgerController extends Controller
 
         if ($this->ledger->save()){
             Toastr::success('Successfully 1 Ledger has added','Success!!!', ['positionClass'=>'toast-bottom-right']);
-            return redirect()->route('Ledger.index')->with('success','Successfully 1 Ledger has added.');
+            return redirect()->route('ledger.index')->with('Success','Successfully 1 Ledger has added.');
         }else{
             return back()->withInput()->with('error', 'Could not be saved ,please try again later');
         }

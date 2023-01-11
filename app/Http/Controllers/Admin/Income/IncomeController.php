@@ -103,7 +103,7 @@ class IncomeController extends Controller
     {
         //
         return view($this->folderName.'form',[
-            'activePage' =>'site_setting',
+            'activePage' =>'site_income',
             'incomes' => $this-> getIncomes(10),
             'n' =>1,
             'income' =>$income,

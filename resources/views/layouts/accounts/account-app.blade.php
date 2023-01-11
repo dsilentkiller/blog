@@ -32,6 +32,14 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <style>
+        body {
+            font-family: bold "Sofia", sans-serif;
+            font-size: 25px;
+            text-shadow: 3px 3px 3px #ababab;
+        }
+    </style>
 </head>
 
 <body>

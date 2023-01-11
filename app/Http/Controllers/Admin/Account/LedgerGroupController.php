@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Account;
 
 use App\Models\c;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Kamaln7\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,7 @@ class LedgerGroupController extends Controller
     public function store(Request $request)
     {
         //
+        // $result = DB::Table('table_name')->select('column1','column2')->where('id',1)->get();
         $this->ledgergroup ->fill($request->all());
 
         $this->ledgergroup ->created_by = Auth::user()->id;

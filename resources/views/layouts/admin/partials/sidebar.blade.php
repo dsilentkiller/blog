@@ -112,8 +112,8 @@
                </div> --}}
                <a href="{{ route('blog.create') }}" class="nav-item nav-link"><i
                        class="fa fa-keyboard me-2"></i>Blog</a>
-               <a href="{{ route('todo.create') }}" class="nav-item nav-link"><i
-                       class="fa fa-keyboard me-2"></i>Todo</a>
+               <a href="{{ route('todo.create') }}" class="nav-item nav-link"><i class="fa fa-tasks"
+                       aria-hidden="true"></i>Todo</a>
                <a href="{{ route('loan.create') }}" class="nav-item nav-link"><i
                        class="fa fa-keyboard me-2"></i>Loan</a>
                <a href="{{ route('investment.create') }}" class="nav-item nav-link"><i
@@ -125,6 +125,8 @@
 
                <a href="{{ route('ledger-group.create') }}" class="nav-item nav-link"><i
                        class="fa fa-keyboard me-2"></i>Accounts</a>
+               {{-- <a href="{{ route('userrole.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Manage --}}
+                   {{-- Roles </a> --}}
 
 
 
